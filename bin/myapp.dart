@@ -5,9 +5,9 @@ void main() {
   List<Map<String, dynamic>> library = [];
   
   
-  AddBook(library, Title: "Dart", year: 2021, Author: "Alice", genre: "Programming");
-  AddBook(library, Title: "Flutter", year: 2022, genre: "Mobile");
-  AddBook(library, Title: "Dart", Author: "Charlie", genre: "Programming");
+  AddBook(library, Title: "Dart", Year: 2021, Author: "Alice", Genre: "Programming");
+  AddBook(library, Title: "Flutter", Year: 2022, Genre: "Mobile");
+  AddBook(library, Title: "Dart", Author: "Charlie", Genre: "Programming");
   
 
   print("\nGetting info for 'Dart':");
@@ -20,15 +20,15 @@ void main() {
   print("\nListing all books:");
   ListAllBooks(library);
   
-  print("\nListing all books in 'Programming' genre:");
-  ListAllBooks(library, genre: "Programming");
+  print("\nListing all books in 'Programming' Genre:");
+  ListAllBooks(library, Genre: "Programming");
   
-  print("\nListing books by genre 'Mobile':");
-  ListBooksByGenre(library, genre: "Mobile");
-  
-  print("\nRemoving book 'Flutter Essentials':");
-  RemoveBook(library, Title: "Flutter Essentials"); 
-  
+  print("\nListing books by Genre 'Mobile':");
+  ListBooksByGenre(library, Genre: "Mobile");
+
+
+  print("\nRemoving book 'Flutter':");
+  RemoveBook(library, Title: "Flutter"); 
 
   print("\nRemoving book 'Nonexistent Book':");
   RemoveBook(library, Title: "Nonexistent Book"); 
@@ -40,15 +40,15 @@ void main() {
 void AddBook(List <Map<String, dynamic>> Books,
 {
   required String Title, 
-  int year = -9999,
+  int Year = -9999,
   String Author = "unknown",
-  String genre = "unknown",}) {
-  print('added book: $Title, year: $year, Author: $Author, genre: $genre');
+  String Genre = "unknown",}) {
+  print('added book: $Title, Year: $Year, Author: $Author, Genre: $Genre');
   Map <String,dynamic> Book ={
 "Title": Title,
-"year": year,
+"Year": Year,
 "Author": Author,
-"genre": genre,
+"Genre": Genre,
 
   };
   Books.add(Book);
@@ -58,32 +58,32 @@ void AddBook(List <Map<String, dynamic>> Books,
 
 String GetBookInformation(List <Map<String, dynamic>> Books, {required String Title}) {
   String info = "book not found";
-  Books.forEach((Book) {(Book["Title"] == Title);
-  info = "Author: ${Book["Author"]}, year: ${Book["year"]}, genre: ${Book["genre"]}";});
+  Books.forEach((Book) {if (Book["Title"] == Title)
+  info = "Author: ${Book["Author"]}, Year: ${Book["Year"]}, Genre: ${Book["Genre"]}";});
   return info;
 }
 
-void ListAllBooks(List <Map<String, dynamic>> Books, {String genre = "none"}){
-  if (genre == "none"){
+void ListAllBooks(List <Map<String, dynamic>> Books, {String Genre = "none"}){
+  if (Genre == "none"){
   Books.forEach((Book){
-    print("Title: ${Book["Title"]}, Author: ${Book["Author"]}, year: ${Book["year"]}, genre: ${Book["genre"]}");
+    print("Title: ${Book["Title"]}, Author: ${Book["Author"]}, Year: ${Book["Year"]}, Genre: ${Book["Genre"]}");
   });
   return;
   }
   else{
-    print("for the gerne $genre:");
-    Books.forEach((Book){ (Book["genre"]==genre); 
-    print("Title: ${Book["Title"]}, Author: ${Book["Author"]}, year: ${Book["year"]}");
+    print("for the gerne $Genre:");
+    Books.forEach((Book){  if(Book["Genre"]==Genre)
+    print("Title: ${Book["Title"]}, Author: ${Book["Author"]}, Year: ${Book["Year"]}");
   });
   }
 
 }
 
 
-void ListBooksByGenre(List <Map<String, dynamic>> Books, {required String genre}){
-  var BooksByGenre = Books.where((book) => book["genre"]== genre);
-  if (BooksByGenre.isEmpty) {print("no books found for this genre found"); return;}
-  BooksByGenre.forEach((Book) {print("Title: ${Book["Title"]}, Author: ${Book["Author"]}, year: ${Book["year"]}, genre: ${Book["genre"]}");;
+void ListBooksByGenre(List <Map<String, dynamic>> Books, {required String Genre}){
+  var BooksByGenre = Books.where((book) => book["Genre"]== Genre);
+  if (BooksByGenre.isEmpty) {print("no books found for this Genre found"); return;}
+  BooksByGenre.forEach((Book) {print("Title: ${Book["Title"]}, Author: ${Book["Author"]}, Year: ${Book["Year"]}");;
   });
 
 }
@@ -97,6 +97,12 @@ void RemoveBook(List <Map<String, dynamic>> Books,  {required String Title}){
     print("Book not found.");
   }
 }
+
+
+
+
+
+
 /*
 List <Map<String, dynamic>> GetBookInformation(List <Map<String, dynamic>> Books, String Title) {
   List <Map<String, dynamic>> BooksWithTheTitle = Books.where((Book) => Book["Title"]==Title).toList(); 
@@ -117,14 +123,14 @@ void RemoveBook(String Title){
 /*
 void ListAllBooks(){
   for (var Book in Library){
-    print("Title: ${Book["Title"]}, Author: ${Book["Author"]}, year: ${Book["year"]}, genre: ${Book["genre"]}");
+    print("Title: ${Book["Title"]}, Author: ${Book["Author"]}, Year: ${Book["Year"]}, Genre: ${Book["Genre"]}");
   }
 }*/
 /*String GetBookInformation(String Title){
 
   for (var Book in Library){
     if (Book["Title"] == Title) {
-      return ("Title: ${Book["Title"]}, Author: ${Book["Author"]}, year: ${Book["year"]}, genre: ${Book["genre"]}");
+      return ("Title: ${Book["Title"]}, Author: ${Book["Author"]}, Year: ${Book["Year"]}, Genre: ${Book["Genre"]}");
       }
   }
   return ("not found");
@@ -133,7 +139,7 @@ String GetBookInformation(String Title){
 
   for (var Book in Library){
     if (Book["Title"] == Title) {
-      return ("Title: ${Book["Title"]}, Author: ${Book["Author"]}, year: ${Book["year"]}, genre: ${Book["genre"]}");
+      return ("Title: ${Book["Title"]}, Author: ${Book["Author"]}, Year: ${Book["Year"]}, Genre: ${Book["Genre"]}");
       }
   }
   return ("not found");
