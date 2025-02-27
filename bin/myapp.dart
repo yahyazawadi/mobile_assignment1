@@ -41,25 +41,24 @@ void main() {
 
 
 void AddBook(List <Map<String, dynamic>> Books,
+{required String Title, 
+ int Year = -9999,
+ String Author = "unknown",
+ String Genre = "unknown",}) 
+    {print('added book: $Title, Year: $Year, Author: $Author, Genre: $Genre');
+Map <String,dynamic> Book=
 {
-  required String Title, 
-  int Year = -9999,
-  String Author = "unknown",
-  String Genre = "unknown",}) {
-  print('added book: $Title, Year: $Year, Author: $Author, Genre: $Genre');
-  Map <String,dynamic> Book ={
 "Title": Title,
 "Year": Year,
 "Author": Author,
 "Genre": Genre,
-
-  };
+};
   Books.add(Book);
   print("book $Title added succufully");
 }
 
 
-String GetBookInformation(List <Map<String, dynamic>> Books, {required String Title}) {
+String GetBookInformation( List <Map<String, dynamic>> Books, {required String Title}) {
   String info = "book not found";
   Books.forEach((Book) {if (Book["Title"] == Title)
   info = "Author: ${Book["Author"]}, Year: ${Book["Year"]}, Genre: ${Book["Genre"]}";});
