@@ -5,13 +5,13 @@ void main() {
   List<Map<String, dynamic>> library = [];
   
   
-  AddBook(library, Title: "Dart", Year: 2021, Author: "Alice", Genre: "Programming");
-  AddBook(library, Title: "Flutter", Year: 2022, Genre: "Mobile");
-  AddBook(library, Title: "Dart", Author: "Charlie", Genre: "Programming");
+  AddBook(library, Title: "No Longer Human", Year: 1948, Author: "Osamu Dazai", Genre: "Fiction");
+  AddBook(library, Title: "The Makioka Sisters", Year: 2022, Genre: "Historical");
+  AddBook(library, Title: "The Moon Over the Mountain", Author: "Atsushi Nakajima", Genre: "Fiction");
   
 
-  print("\nGetting info for 'Dart':");
-  print(GetBookInformation(library, Title: "Dart"));
+  print("\nGetting info for 'No Longer Human':");
+  print(GetBookInformation(library, Title: "No Longer Human"));
   
   print("\nGetting info for 'notreal':");
   print(GetBookInformation(library, Title: "not real")); 
@@ -20,15 +20,18 @@ void main() {
   print("\nListing all books:");
   ListAllBooks(library);
   
-  print("\nListing all books in 'Programming' Genre:");
-  ListAllBooks(library, Genre: "Programming");
+  print("\nListing all books in 'Fiction' Genre:");
+  ListAllBooks(library, Genre: "Fiction");
   
-  print("\nListing books by Genre 'Mobile':");
-  ListBooksByGenre(library, Genre: "Mobile");
+  print("\nListing books by Genre 'Historical':");
+  ListBooksByGenre(library, Genre: "Historical");
+
+  print("\nListing books by Genre 'none':");
+  ListBooksByGenre(library, Genre: "none");
 
 
-  print("\nRemoving book 'Flutter':");
-  RemoveBook(library, Title: "Flutter"); 
+  print("\nRemoving book 'The Moon Over the Mountain':");
+  RemoveBook(library, Title: "The Moon Over the Mountain"); 
 
   print("\nRemoving book 'Nonexistent Book':");
   RemoveBook(library, Title: "Nonexistent Book"); 
